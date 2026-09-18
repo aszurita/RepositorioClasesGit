@@ -1,0 +1,37 @@
+@api = http://localhost:3000/api
+
+### Listar todos los movimientos
+GET {{api}}/movimientos?tipo=DEPOSITO
+
+### Obtener un movimiento por id
+GET {{api}}/movimientos/id/5
+
+### Obtener un movimiento que no existe (404)
+GET {{api}}/movimientos/nombre/L
+
+### Crear un movimiento
+POST {{api}}/movimientos
+Content-Type: application/json
+
+{
+  "nombre": "Ana",
+  "apellido": "Torres",
+  "tipo": "DEPOSITO",
+  "numero_cuenta": "1001",
+  "cantidad": 100,
+  "descripcion": "Prueba desde REST Client"
+}
+
+
+### Actualizar un movimiento
+PUT {{api}}/movimientos/id/1
+Content-Type: application/json
+
+{
+  "cantidad": 150,
+  "descripcion": "Monto corregido"
+}
+
+
+### Eliminar un movimiento
+DELETE {{api}}/movimientos/6
