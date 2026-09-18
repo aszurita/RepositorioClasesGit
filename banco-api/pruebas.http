@@ -1,0 +1,41 @@
+@api = http://localhost:3000/api
+
+### Listar todos los movimientos
+GET {{api}}/movimientos
+
+### Obtener un movimiento por id
+GET {{api}}/movimientos/id/1
+
+### Obtener un movimiento que no existe (404)
+GET {{api}}/movimientos/nombre/chaolin
+
+### Obtener una foto aleatoria de una persona (busca por nombre)
+GET {{api}}/movimientos/nombre/Ana/foto
+
+### Generar una imagen a partir de una descripción (o imagen fija si falla)
+POST {{api}}/imagenes
+Content-Type: application/json
+
+{
+  "descripcion": "Un gato astronauta flotando en el espacio, estilo acuarela"
+}
+
+### Generar una imagen sin descripción (400)
+POST {{api}}/imagenes
+Content-Type: application/json
+
+{}
+
+
+### Crear un movimiento
+POST {{api}}/movimientos
+Content-Type: application/json
+
+{
+  "nombre": "Ana",
+  "apellido": "Torres",
+  "tipo": "DEPOSITO",
+  "numero_cuenta": "1001",
+  "cantidad": 100,
+  "descripcion": "Prueba desde REST Client"
+}
