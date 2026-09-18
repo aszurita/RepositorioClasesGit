@@ -3,7 +3,6 @@
 // Los datos de conexión se leen del archivo .env (ver .env.example)
 // =====================================================================
 const sql = require("mssql");
- 
 const config = {
   server: process.env.DB_SERVER,
   port: Number(process.env.DB_PORT) || 1433,
@@ -15,11 +14,11 @@ const config = {
     trustServerCertificate: true, // "Certificado de servidor de confianza"
   },
 };
- 
+
 // Nos conectamos una sola vez y reutilizamos la conexión (pool).
 // Si falla (ej. sin VPN), se vuelve a intentar en la siguiente consulta.
 let conexion = null;
- 
+
 function conectar() {
   if (!conexion) {
     conexion = sql
@@ -35,8 +34,8 @@ function conectar() {
   }
   return conexion;
 }
- 
- 
+
+
 // Ejecuta una consulta con parámetros y devuelve las filas.
 // Ejemplo: consultar("SELECT * FROM cap_movimientos WHERE id = @id", { id: 5 })
 async function consultar(texto, parametros = {}) {
@@ -48,6 +47,5 @@ async function consultar(texto, parametros = {}) {
   const resultado = await request.query(texto);
   return resultado.recordset;
 }
- 
+
 module.exports = { sql, conectar, consultar };
- 
